@@ -5,7 +5,7 @@ const flatten = require("flat");
 const os = require("os");
 
 program
-  .version("0.1.0", "-v, --version")
+  .version("1.0.0", "-v, --version")
   .option("-p, --path [filePath]", "Input file path")
   .parse(process.argv);
 
