@@ -13,17 +13,21 @@ function main() {
   const filePath = program.path;
 
   if (!filePath) {
-    console.error("Please specify the input file path with the --path [PATH] argument");
+    console.error("Please specify the input file path with the --path[PATH] argument");
     return;
   }
 
-  if (fs.existsSync(filePath)) {
+  if (fs.existsSync(filePath) == false) {
+    console.error('Input file does not exits: ', filePath);
+    return;
+  }
+
     console.log("Checking file %s", filePath);
 
     const fileExt = path.extname(filePath);
 
     if (fileExt != ".json" && fileExt != ".csv") {
-      console.error("Input file %s does not exist", filePath);
+      console.error("Invalid file format. Only JSON and CSV are supported, %s given", fileExt);
       return;
     }
 
@@ -36,7 +40,6 @@ function main() {
       console.log("converting csv to json...");
       csvToJSON(fileContent);
     }
-  }
 }
 
 function jsonToCSV(fileContent) {
